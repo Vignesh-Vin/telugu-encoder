@@ -1,7 +1,7 @@
 function convertText() {
 	let text = document.querySelector("#unicode-text")
 
-	console.log(text.value.charCodeAt(1))
+	console.log(text.value.charCodeAt(0))
 }
 
 
