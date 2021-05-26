@@ -1,9 +1,18 @@
-function convertText() {
-	let text = document.querySelector("#unicode-text")
+function convertToAnu() {
+	let unicodeText = document.querySelector("#unicode-text")
+	let anuText = document.querySelector("#anu-text")
 
-	console.log(text.value.charCodeAt(0))
+	vowels.(unicodeText.value)
+	document.querySelector("h2").innerHTML = unicodeText.value.charCodeAt(0)
 }
 
+
+let vowels = {
+3077: "n",
+3088: "€",
+3098: "‚",
+3099: "‡"
+}
 
 
 // Misc. functions
