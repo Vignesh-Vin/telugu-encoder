@@ -5,10 +5,18 @@ function convertToAnu() {
 	document.querySelector("#anu-text").value = ""
 
 	for (i = 0; i < uniText.length; i++) {
-		for (j = 3077; j <= vowelsLastItem; j++) {
+		for (j = 3077; j <= 3092; j++) {
 			if (!!vowels[j] && uniText.charCodeAt(i) === j) {
 				document.querySelector("#anu-text").value += vowels[j]
-				console.log(vowels[j])
+				//console.log(vowels[j])
+			}
+		}
+		
+		for (k = 3093; k <= 3093; k++) {
+			if (!!consonats[k] && uniText.charCodeAt(i) === k) {
+				document.querySelector("#anu-text").value += consonats[k]
+				console.log(consonats[k])
+				
 			}
 		}
 	}
@@ -27,6 +35,19 @@ let vowels = {
 	3090: String.fromCharCode(0xFF), //  ఒ
 	3091: String.fromCharCode(0x7A), //  ఓ
 	3092: String.fromCharCode(0x57), //  ఔ
+}
+
+let consonats = {
+	3093: String.fromCharCode(0xC5)// + String.fromCharCode(0xB7) //క
+	3094: String.fromCharCode(0x4B) // ఖ
+	3095: String.fromCharCode(0x3E)// + String.fromCharCode(0xA3) // గ
+	
+}
+
+let symbols = {
+	3134: String.fromCharCode(0x90)
+	3135: String.fromCharCode()
+	3136: String.fromCharCode()
 }
 
 let vowelsLastItem = Object.keys(vowels)[Object.keys(vowels).length - 1]
