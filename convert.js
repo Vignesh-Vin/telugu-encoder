@@ -1,23 +1,23 @@
-function encodeToAnu() {
+function encodeToAscii() {
 	let uniText = document.querySelector("#unicode-text").value
 	
-	// clear the anu-text (current output) field
-	document.querySelector("#anu-text").value = ""
+	// clear the Ascii-text (current output) field
+	document.querySelector("#ascii-text").value = ""
 
 	for (i = 0; i < uniText.length; i++) {
 		//check for spaces and enters
 		switch (uniText.charCodeAt(i)) {
 			case 0x20: // space
-				document.querySelector("#anu-text").value += String.fromCharCode(0x20)
+				document.querySelector("#ascii-text").value += String.fromCharCode(0x20)
 				continue
 			case 0xa: // enter
-				document.querySelector("#anu-text").value += String.fromCharCode(0xa)
+				document.querySelector("#ascii-text").value += String.fromCharCode(0xa)
 				continue
 		}
 		// check for vowels
 		for (j = 3074; j <= 3092; j++) {
 			if (!!vowels[j] && uniText.charCodeAt(i) === j) {
-				document.querySelector("#anu-text").value += vowels[j]
+				document.querySelector("#ascii-text").value += vowels[j]
 				continue
 			}
 		}
@@ -38,7 +38,7 @@ function encodeToAnu() {
 				}
 			}
 		}
-		document.querySelector("#anu-text").value += totalLetter
+		document.querySelector("#ascii-text").value += totalLetter
 		// the system works!!! yayyy!!!!
 	}
 }
@@ -86,9 +86,9 @@ let consonants = {
 
 
 // copy text to clipboard
-function copyAnu() {
+function copyAscii() {
 	/* const clipboard = navigator.clipboard || window.clipboard */
-	/* window.clipboard.write(document.querySelector("#anu-text").value) */
+	/* window.clipboard.write(document.querySelector("#ascii-text").value) */
 }
 
 // Misc. functions
