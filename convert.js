@@ -15,7 +15,7 @@ function convertToAnu() {
 		}
 		
 		// check for consonants
-		for (k = 3093; k <= 3093; k++) {
+		/* for (k = 3093; k <= 3093; k++) {
 			// check for base
 			if (!!consonants[k] && uniText.charCodeAt(i) === k) {
 				document.querySelector("#anu-text").value += consonants[k].base				
@@ -37,7 +37,27 @@ function convertToAnu() {
 						console.log(`${i}Next char is not a symbol`)
 						document.querySelector("#anu-text").value += consonants[k].a
 			} 
+		} */
+		
+		// consonants
+		let totalLetter = ""
+		for (x = 3093; x <= 3093; x++) {
+			if (!!consonants[x] && uniText.charCodeAt(i) === x) {
+				totalLetter = consonants[x].base
+				if (!!uniText.charCodeAt(i + 1) && uniText.charCodeAt(i + 1) >= 3134 && uniText.charCodeAt(i + 1) <= 3150) {
+					for (y = 3134; y <= 3150; y++) {
+						if (uniText.charCodeAt(i + 1) === y){
+							totalLetter += consonants[x].symbols[y]
+							console.log(totalLetter)
+						}
+					}
+				} else {
+					totalLetter += consonants[x].a
+				}
+			}
 		}
+		document.querySelector("#anu-text").value += totalLetter
+		// the system works!!! yayyy!!!!
 	}
 }
 
@@ -64,8 +84,8 @@ let consonants = {
 			3134: String.fromCharCode(0x91), // కా
 			3135: String.fromCharCode(0x8D), // కి
 			3136: String.fromCharCode(0xA1),  // కీ
-			3137: String.fromCharCode(0x94), // కు
-			3138: String.fromCharCode(0x4C), // కూ
+			3137: String.fromCharCode(0xB7) + String.fromCharCode(0x94), // కు  (the )
+			3138: String.fromCharCode(0xB7) + String.fromCharCode(0x4C), // కూ
 			3142: null, // కె
 			3143: null, // కే
 			3144: null, // కై
@@ -79,15 +99,15 @@ let consonants = {
 	
 }
 
-let symbols = {
+/* let symbols = {
 	3134: String.fromCharCode(0x90),
 	3135: String.fromCharCode(),
 	3136: String.fromCharCode()
-}
-
+} */
+/* 
 let vowelsLastItem = Object.keys(vowels)[Object.keys(vowels).length - 1]
 let vowelsFirstItem = Object.keys(vowels)[0]
-
+ */
 
 // Misc. functions
 function randomBetween(min, max){
