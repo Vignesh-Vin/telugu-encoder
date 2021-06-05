@@ -1,11 +1,10 @@
-function convertToAnu() {
+function encodeToAnu() {
 	let uniText = document.querySelector("#unicode-text").value
 	
 	// clear the anu-text (current output) field
 	document.querySelector("#anu-text").value = ""
 
 	for (i = 0; i < uniText.length; i++) {
-		console.log(i)
 		//check for spaces and enters
 		switch (uniText.charCodeAt(i)) {
 			case 0x20: // space
@@ -16,37 +15,12 @@ function convertToAnu() {
 				continue
 		}
 		// check for vowels
-		for (j = 3077; j <= 3092; j++) {
+		for (j = 3074; j <= 3092; j++) {
 			if (!!vowels[j] && uniText.charCodeAt(i) === j) {
 				document.querySelector("#anu-text").value += vowels[j]
 				continue
 			}
 		}
-		
-		// check for consonants
-		/* for (k = 3093; k <= 3093; k++) {
-			// check for base
-			if (!!consonants[k] && uniText.charCodeAt(i) === k) {
-				document.querySelector("#anu-text").value += consonants[k].base				
-			}
-			// check if the next char is a symbol
-			if (!!uniText.charCodeAt(i + 1)) { // if next char exists
-				if (uniText.charCodeAt(i + 1) >= 3134 && uniText.charCodeAt(i + 1) < 3150) {
-					for (l = 3134; l < 3150; l++) {
-						if (uniText.charCodeAt(i + 1) === l) {
-							document.querySelector("#anu-text").value += consonants[k].symbols[l]
-							i++
-						}
-					}
-				} else {
-						console.log(`${i}char is not a symbol`)
-						document.querySelector("#anu-text").value += consonants[k].a
-					} 
-			} else {
-						console.log(`${i}Next char is not a symbol`)
-						document.querySelector("#anu-text").value += consonants[k].a
-			} 
-		} */
 		
 		// consonants
 		let totalLetter = ""
@@ -70,6 +44,8 @@ function convertToAnu() {
 }
 
 let vowels = {
+	3074: String.fromCharCode(0x2B), // ం
+	//3075: String.fromCharCode(),
 	3077: String.fromCharCode(0x6E), // అ
 	3078: String.fromCharCode(0x80), //  ఆ
 	3079: String.fromCharCode(0x82), //  ఇ
@@ -95,11 +71,11 @@ let consonants = {
 			3137: String.fromCharCode(0xC5) + String.fromCharCode(0xB7) + String.fromCharCode(0x94), // కు  (the )
 			3138: String.fromCharCode(0xC5) + String.fromCharCode(0xB7) + String.fromCharCode(0x4C), // కూ
 			3142: String.fromCharCode(0xC2) + String.fromCharCode(0xBF), // కె
-			3143: null, // కే
-			3144: null, // కై
-			3146: null, // కొ
-			3147: null, // కో
-			3148: null // కౌ
+			3143: String.fromCharCode(0xB9) + String.fromCharCode(0xBF), // కే
+			3144: String.fromCharCode(0xC2) + String.fromCharCode(0xBF) + String.fromCharCode(0xD5), // కై
+			3146: String.fromCharCode(0xBF) + String.fromCharCode(0x3D), // కొ
+			3147: String.fromCharCode(0xBF) + String.fromCharCode(0xC3), // కో
+			3148: String.fromCharCode(0xBF) + String.fromCharCode(0x9A) // కౌ
 		}
 	}, 
 	3094: String.fromCharCode(0x4B),  // ఖ
@@ -124,3 +100,41 @@ function setCharAt(str,index,chr) {
     if(index > str.length-1) return str;
     return str.substring(0,index) + chr + str.substring(index+1);
 }
+
+
+
+/* export-to-word functionality draft
+
+function exportHTML(){
+       var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+            "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+            "xmlns='http://www.w3.org/TR/REC-html40'>"+
+            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+       var footer = "</body></html>";
+       var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
+       
+       var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+       var fileDownload = document.createElement("a");
+       document.body.appendChild(fileDownload);
+       fileDownload.href = source;
+       fileDownload.download = 'document.doc';
+       fileDownload.click();
+       document.body.removeChild(fileDownload);
+    }
+		
+		*/
+		
+		
+		
+		
+/* copy to clipboard draft
+
+function copy() {
+  var copyText = document.querySelector("#input");
+  copyText.select();
+  document.execCommand("copy");
+}
+
+document.querySelector("#copy").addEventListener("click", copy);
+
+*/
