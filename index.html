@@ -2,20 +2,31 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-<h1 id="text"></h1>
+<div id="wrapper">
+<div class="heading-box">
+	<h1 id="heading">Converter</h1>
+</div>
 <div class="container">
-	<div class="unicode">
-		<input type="text" id="unicode-text">
-		<button onclick="convertToAnu()">Convert to Anu</button>
+	<div class="text-box">
+		<textarea type="text" class="text-both" id="unicode-text"></textarea>
+		<div class="buttons">
+			<button id="toAnu" onclick="convertToAnu()">Convert to Anu</button>
+			<button id="copyUnicode" onclick="copyUnicode()">Copy</button>
+			</div>
 	</div>
-	<div class="anu">
-		<input type="text" id="anu-text">
-		<button onclick="convertToUnicode()">Convert to Unicode</button>
+	<div class="text-box">
+		<textarea type="text" class="text-both" id="anu-text"></textarea>
+		<div class="buttons">
+			<button id="toUnicode" onclick="convertToUnicode()">Convert to Unicode</button>
+			<button id="copyAnu" onclick="copyAnu()">Copy</button>
+		</div>
 	</div>
 </div>
-<h2>charcode:<span id="char_code"></span></h2>
+</div>
+<!-- <h2>charcode:<span id="char_code"></span></h2> -->
 </body>
 <link rel="stylesheet" type="text/css" href="./font.css">
 <link rel="stylesheet" type="text/css" href="./style.css">

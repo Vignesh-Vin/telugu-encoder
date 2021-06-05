@@ -43,16 +43,15 @@ function convertToAnu() {
 		let totalLetter = ""
 		for (x = 3093; x <= 3093; x++) {
 			if (!!consonants[x] && uniText.charCodeAt(i) === x) {
-				totalLetter = consonants[x].base
+				totalLetter = consonants[x].base // identifies and sets the base of the character
 				if (!!uniText.charCodeAt(i + 1) && uniText.charCodeAt(i + 1) >= 3134 && uniText.charCodeAt(i + 1) <= 3150) {
 					for (y = 3134; y <= 3150; y++) {
 						if (uniText.charCodeAt(i + 1) === y){
-							totalLetter += consonants[x].symbols[y]
-							console.log(totalLetter)
+							totalLetter += consonants[x].symbols[y] // find the symbol (if it exists) and add it
 						}
 					}
 				} else {
-					totalLetter += consonants[x].a
+					totalLetter += consonants[x].a // if no symbol is found just add a (the default one)
 				}
 			}
 		}
@@ -99,15 +98,13 @@ let consonants = {
 	
 }
 
-/* let symbols = {
-	3134: String.fromCharCode(0x90),
-	3135: String.fromCharCode(),
-	3136: String.fromCharCode()
-} */
-/* 
-let vowelsLastItem = Object.keys(vowels)[Object.keys(vowels).length - 1]
-let vowelsFirstItem = Object.keys(vowels)[0]
- */
+
+
+// copy text to clipboard
+function copyAnu() {
+	/* const clipboard = navigator.clipboard || window.clipboard */
+	/* window.clipboard.write(document.querySelector("#anu-text").value) */
+}
 
 // Misc. functions
 function randomBetween(min, max){
