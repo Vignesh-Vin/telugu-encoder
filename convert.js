@@ -6,11 +6,20 @@ function convertToAnu() {
 
 	for (i = 0; i < uniText.length; i++) {
 		console.log(i)
+		//check for spaces and enters
+		switch (uniText.charCodeAt(i)) {
+			case 0x20: // space
+				document.querySelector("#anu-text").value += String.fromCharCode(0x20)
+				continue
+			case 0xa: // enter
+				document.querySelector("#anu-text").value += String.fromCharCode(0xa)
+				continue
+		}
 		// check for vowels
 		for (j = 3077; j <= 3092; j++) {
 			if (!!vowels[j] && uniText.charCodeAt(i) === j) {
 				document.querySelector("#anu-text").value += vowels[j]
-				//console.log(vowels[j])
+				continue
 			}
 		}
 		
@@ -47,7 +56,7 @@ function convertToAnu() {
 				if (!!uniText.charCodeAt(i + 1) && uniText.charCodeAt(i + 1) >= 3134 && uniText.charCodeAt(i + 1) <= 3150) {
 					for (y = 3134; y <= 3150; y++) {
 						if (uniText.charCodeAt(i + 1) === y){
-							totalLetter += consonants[x].symbols[y] // find the symbol (if it exists) and add it
+							totalLetter = consonants[x].symbols[y] // find the symbol (if it exists) and add it
 						}
 					}
 				} else {
@@ -80,12 +89,12 @@ let consonants = {
 		base: String.fromCharCode(0xC5),
 		a: String.fromCharCode(0xB7),
 		symbols: {
-			3134: String.fromCharCode(0x91), // కా
-			3135: String.fromCharCode(0x8D), // కి
-			3136: String.fromCharCode(0xA1),  // కీ
-			3137: String.fromCharCode(0xB7) + String.fromCharCode(0x94), // కు  (the )
-			3138: String.fromCharCode(0xB7) + String.fromCharCode(0x4C), // కూ
-			3142: null, // కె
+			3134: String.fromCharCode(0xC5) + String.fromCharCode(0x91), // కా
+			3135: String.fromCharCode(0xC5) + String.fromCharCode(0x8D), // కి
+			3136: String.fromCharCode(0xC5) + String.fromCharCode(0xA1),  // కీ
+			3137: String.fromCharCode(0xC5) + String.fromCharCode(0xB7) + String.fromCharCode(0x94), // కు  (the )
+			3138: String.fromCharCode(0xC5) + String.fromCharCode(0xB7) + String.fromCharCode(0x4C), // కూ
+			3142: String.fromCharCode(0xC2) + String.fromCharCode(0xBF), // కె
 			3143: null, // కే
 			3144: null, // కై
 			3146: null, // కొ
