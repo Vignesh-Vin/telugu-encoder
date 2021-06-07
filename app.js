@@ -24,17 +24,22 @@ function encodeToAscii() {
 		
 		// consonants
 		let totalLetter = ""
-		for (x = 3093; x <= 3093; x++) {
+		for (x = 3093; x <= 3095; x++) {
 			if (!!consonants[x] && uniText.charCodeAt(i) === x) {
-				totalLetter = consonants[x].base // identifies and sets the base of the character
+				// totalLetter = consonants[x].base // identifies and sets the base of the character
 				if (!!uniText.charCodeAt(i + 1) && uniText.charCodeAt(i + 1) >= 3134 && uniText.charCodeAt(i + 1) <= 3150) {
 					for (y = 3134; y <= 3150; y++) {
 						if (uniText.charCodeAt(i + 1) === y){
 							totalLetter = consonants[x].symbols[y] // find the symbol (if it exists) and add it
+							
+							// special case for కై, గై, పై etc.
+							/* if (uniText.charCodeAt(i + 1) === 3144) {
+								
+							}*/
 						}
 					}
 				} else {
-					totalLetter += consonants[x].a // if no symbol is found just add a (the default one)
+					totalLetter = consonants[x].base // if no symbol is found just add a (the default one)
 				}
 			}
 		}
@@ -62,13 +67,13 @@ let vowels = {
 
 let consonants = {
 	3093: { //క
-		base: String.fromCharCode(0xC5),
-		a: String.fromCharCode(0xB7),
+		//base: String.fromCharCode(0xC5),
+		base: String.fromCharCode(0xC5) + String.fromCharCode(0xB7), // క
 		symbols: {
 			3134: String.fromCharCode(0xC5) + String.fromCharCode(0x91), // కా
 			3135: String.fromCharCode(0xC5) + String.fromCharCode(0x8D), // కి
 			3136: String.fromCharCode(0xC5) + String.fromCharCode(0xA1),  // కీ
-			3137: String.fromCharCode(0xC5) + String.fromCharCode(0xB7) + String.fromCharCode(0x94), // కు  (the )
+			3137: String.fromCharCode(0xC5) + String.fromCharCode(0xB7) + String.fromCharCode(0x94), // కు
 			3138: String.fromCharCode(0xC5) + String.fromCharCode(0xB7) + String.fromCharCode(0x4C), // కూ
 			3142: String.fromCharCode(0xC2) + String.fromCharCode(0xBF), // కె
 			3143: String.fromCharCode(0xB9) + String.fromCharCode(0xBF), // కే
@@ -78,9 +83,39 @@ let consonants = {
 			3148: String.fromCharCode(0xBF) + String.fromCharCode(0x9A) // కౌ
 		}
 	}, 
-	3094: String.fromCharCode(0x4B),  // ఖ
-	3095: String.fromCharCode(0x3E) // + String.fromCharCode(0xA3) // గ
-	
+	3094: {
+		//base: String.fromCharCode(0x4B), // K
+		base: String.fromCharCode(0x4B),  // ఖ
+		symbols: {
+			3134: String.fromCharCode(0x55) + String.fromCharCode(0xB2),// ఖా
+			3135: String.fromCharCode(0xCF),// ఖి
+			3136: String.fromCharCode(0x46),// ఖీ
+			3137: String.fromCharCode(0x4B) + String.fromCharCode(0x54),// ఖు
+			3138: String.fromCharCode(0x4B) + String.fromCharCode(0xD6),// ఖూ
+			3142: String.fromCharCode(0x55) + String.fromCharCode(0xC9) + String.fromCharCode(0xD5),// ఖె
+			3143: String.fromCharCode(0x55) + String.fromCharCode(0xF1),// ఖే  
+			3144: String.fromCharCode(0x55) + String.fromCharCode(0xC9) + String.fromCharCode(0xD5),// ఖై
+			3146: String.fromCharCode(0x55) + String.fromCharCode(0xA4),// ఖొ
+			3147: String.fromCharCode(0x55) + String.fromCharCode(0xCB),// ఖో
+			3148: String.fromCharCode(0x55) + String.fromCharCode(0x85),// ఖౌ
+		}
+	},
+	3095: {
+		base : String.fromCharCode(0x3E) + String.fromCharCode(0xB7),	// గ
+		symbols: {
+			3134: String.fromCharCode(0x3E) + String.fromCharCode(0xB1), // గా
+		  3135: String.fromCharCode(0xD0), // గి
+		  3136: String.fromCharCode(0x5E), // గీ
+		  3137: String.fromCharCode(0x3E) + String.fromCharCode(0xB7) + String.fromCharCode(0x54), // గు
+		  3138: String.fromCharCode(0x3E) + String.fromCharCode(0xB7) + String.fromCharCode(0xD6), // గూ
+		  3142: String.fromCharCode(0xC2) + String.fromCharCode(0x3E), // గె
+		  3143: String.fromCharCode(0xB9) + String.fromCharCode(0x3E), // గే
+		  3144: String.fromCharCode(0xC2) + String.fromCharCode(0x3E) + String.fromCharCode(0xD5), // గై
+		  3146: String.fromCharCode(0x3E) + String.fromCharCode(0x3D), // గొ
+		  3147: String.fromCharCode(0x3E) + String.fromCharCode(0xC3), // గో
+		  3148: String.fromCharCode(0x3E) + String.fromCharCode(0x9A) // గౌ
+		}
+	}
 }
 
 
