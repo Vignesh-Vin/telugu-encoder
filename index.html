@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
@@ -14,14 +14,16 @@
 		<textarea type="text" class="text-both" id="unicode-text"></textarea>
 		<div class="buttons">
 			<button id="toAscii" onclick="encodeToAscii()">Encode to ASCII</button>
-			<button id="copyUnicode" onclick="copyUnicode()">Copy</button>
+			<button id="copyAscii" onclick="copyAscii()">Copy</button>
+			<button id="docAscii" onclick="docAsciiDownload()">.doc</button>
 			</div>
 	</div>
 	<div class="text-box">
 		<textarea type="text" class="text-both" id="ascii-text"></textarea>
 		<div class="buttons">
 			<button id="toUnicode" onclick="encodeToUnicode()">Encode to Unicode</button>
-			<button id="copyAscii" onclick="copyAscii()">Copy</button>
+			<button id="copyUnicode" onclick="copyUnicode()">Copy</button>
+			<button id="docUnicode" onclick="docUnicodeDownload()">.doc</button>
 		</div>
 	</div>
 </div>
