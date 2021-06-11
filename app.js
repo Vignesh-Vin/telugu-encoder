@@ -31,6 +31,16 @@ function encodeToAscii() {
 					for (y = 3134; y <= 3150; y++) {
 						if (uniText.charCodeAt(i + 1) === y){
 							totalLetter = consonants[x].symbols[y] // find the symbol (if it exists) and assign it				
+							// if the symbol is "visarga" (్) then, make the next letter an extension
+							if (y === 3149) { // needs more fixing
+								for (z = 3093; z <= 3129; z++) {
+									
+									if (uniText.charCodeAt(i + 2) === z) {
+										totalLetter = consonants[x].symbols[y] + extensions[z]
+										i = i + 3
+									}
+								}
+							}
 						}
 					}
 				} else {
@@ -39,6 +49,8 @@ function encodeToAscii() {
 			}
 		}
 		document.querySelector("#ascii-text").value += totalLetter
+		
+		
 		// the system works!!! yayyy!!!!
 	}
 }
@@ -60,6 +72,45 @@ let vowels = {
 	3092: String.fromCharCode(0x57), //  ఔ
 }
 
+let extensions = {
+	3093: String.fromCharCode(0xD8), // క్క
+	3094: String.fromCharCode(0x89), // క్ఖ
+	3095: String.fromCharCode(0x5A), // క్గ
+	3096: String.fromCharCode(0xE9), // క్ఘ
+	3097: String.fromCharCode(0x5F), // క్ఙ/////
+	3098: String.fromCharCode(0xCC), // క్చ
+	3099: String.fromCharCode(0xCC) + String.fromCharCode(0xDB), // క్ఛ
+	3100: String.fromCharCode(0xA8), // క్జ
+	3101: String.fromCharCode(0x5F), // క్ఝ ////////
+	3102: String.fromCharCode(0xE3), // క్ఞ
+	3103: String.fromCharCode(0xBC), // క్ట
+	3104: String.fromCharCode(0xF7), // క్ఠ
+	3105: String.fromCharCode(0xA6), // క్డ
+	3106: String.fromCharCode(0x5F), // క్ఢ ////////
+	3107: String.fromCharCode(0x92), // క్ణ
+	3108: String.fromCharCode(0xEF), // క్త
+	3109: String.fromCharCode(0x9C), // క్థ
+	3110: String.fromCharCode(0xDD), // క్ద
+	3111: String.fromCharCode(0xC6), // క్ధ
+	3112: String.fromCharCode(0x95), // క్న
+	3113: "", // క్
+	3114: String.fromCharCode(0xCE), // క్ప
+	3115: String.fromCharCode(0xCE) + String.fromCharCode(0xDB), // క్ఫ
+	3116: String.fromCharCode(0xD2), // క్బ
+	3117: String.fromCharCode(0xD2) + String.fromCharCode(0xDB), // క్భ
+	3118: String.fromCharCode(0x88), // క్మ
+	3119: String.fromCharCode(0xAB), // క్య
+	3120: String.fromCharCode(0xE7), // క్ర//////////////////////////
+	3121: String.fromCharCode(0x5F), // క్ఱ ///////////
+	3122: String.fromCharCode(0xA2), // క్ల
+	3123: String.fromCharCode(0xDF), // క్ళ
+	3124: "", // క్
+	3125: String.fromCharCode(0xC7), // క్వ
+	3126: String.fromCharCode(0xF4), // క్శ
+	3127: String.fromCharCode(0xFC), // క్ష ////////////////////////////
+	3128: String.fromCharCode(0xE0), // క్స
+	3129: String.fromCharCode(0xBD), // క్హ
+}
 let consonants = {
 	3093: { //క
 		//base: String.fromCharCode(0xC5),
@@ -181,7 +232,7 @@ let consonants = {
 			3149: String.fromCharCode(0x43) + String.fromCharCode(0xD9) // జ్
 		}
 	},
-	3101: {  // ఝ
+	3101: { // ఝ
 		base: String.fromCharCode(0x73) + String.fromCharCode(0xC1) + String.fromCharCode(0x61),
 		symbols: {
 			3134: String.fromCharCode(0x73) + String.fromCharCode(0xC1) + String.fromCharCode(0x61) + String.fromCharCode(0x6E), // ఝా
@@ -257,13 +308,13 @@ let consonants = {
 			3136: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0x9E), // ఢీ
 			3137: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0x83) + String.fromCharCode(0x54), // ఢు
 			3138: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0x83) + String.fromCharCode(0xD6), // ఢూ
-			3142: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0xEE), // ఢె //////////////////////////////////////////////////////////////////////////// NEEDS WORK!!! NOT WORKING
-			3143: String.fromCharCode(0xF3) + String.fromCharCode(0xFB) + String.fromCharCode(0xF6), // ఢే
-			3144: String.fromCharCode(0xF3) + String.fromCharCode(0xEE) + String.fromCharCode(0xD5) + String.fromCharCode(0xF6), // ఢై
-			3146: String.fromCharCode(0xF3) + String.fromCharCode(0xF6) + String.fromCharCode(0x52), // ఢొ
-			3147: String.fromCharCode(0xF3) + String.fromCharCode(0xC3) + String.fromCharCode(0xF6), // ఢో
-			3148: String.fromCharCode(0xF3) + String.fromCharCode(0xEA) + String.fromCharCode(0xF6), // ఢౌ
-			3149: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0x83) + String.fromCharCode(0x66) // ఢ్
+			3142: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0xEE), // ఢె 
+			3143: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0xFB), // ఢే
+			3144: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0xEE) + String.fromCharCode(0xD5), // ఢై
+			3146: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0x3D), // ఢొ
+			3147: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0xC3), // ఢో
+			3148: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0xEA), // ఢౌ
+			3149: String.fromCharCode(0x26) + String.fromCharCode(0xF3) + String.fromCharCode(0x8E) // ఢ్
 		}
 	},
 	3107: { // ణ
@@ -282,6 +333,9 @@ let consonants = {
 			3148: String.fromCharCode(0x44) + String.fromCharCode(0x85), // ణౌ
 			3149: String.fromCharCode(0x44) + String.fromCharCode(0x59) // ణ్
 		}
+	},
+	3108: { // త
+		
 	}
 }
 
