@@ -5,28 +5,26 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-<div id="wrapper">
+<div id="container" class="container">
 <div class="heading-box">
 	<h1 id="heading">Telugu Encoder v0.6.0</h1>
 </div>
-<div class="container">
-	<div class="text-box">
+	<div class="unicode-box">
 		<textarea type="text" class="text-area-both" id="unicode-text"></textarea>
-		<div class="buttons">
-			<button id="toAscii" onclick="encodeToAscii()">Encode to ASCII</button>
-			<button id="copyAscii" onclick="copyAscii()">Copy</button>
-			<button id="docAscii" onclick="docAsciiDownload()">.doc</button>
-			</div>
 	</div>
-	<div class="text-box">
+	<div class="ascii-box">
 		<textarea type="text" class="text-area-both" id="ascii-text"></textarea>
-		<div class="buttons">
-			<button id="toUnicode" onclick="encodeToUnicode()">Encode to Unicode</button>
-			<button id="copyUnicode" onclick="copyUnicode()">Copy</button>
-			<button id="docUnicode" onclick="docUnicodeDownload()">.doc</button>
-		</div>
 	</div>
-</div>
+	<div class="buttons-ascii">
+		<button class="encode-to-unicode" onclick="encodeToUnicode()">Encode to Unicode</button>
+		<button class="copy-ascii" onclick="copyAscii()">Copy</button>
+		<button class="download-ascii" onclick="docUnicodeDownload()">.doc</button>
+	</div>
+	<div class="buttons-unicode">
+		<button class="encode-to-ascii" onclick="encodeToAscii()">Encode to ASCII</button>
+		<button class="copy-unicode" onclick="copyUnicode()">Copy</button>
+		<button class="download-unicode" onclick="docAsciiDownload()">.doc</button>
+	</div>
 </div>
 <!-- <h2>charcode:<span id="char_code"></span></h2> -->
 </body>

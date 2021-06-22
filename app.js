@@ -684,13 +684,13 @@ let consonants = {
 }
 
 // copy text to clipboard
-function copyAscii() {
+function copyUnicode() {
 	let copyText = document.querySelector("#unicode-text");
   copyText.select();
   document.execCommand("copy");
 }
 
-function copyUnicode() {
+function copyAscii() {
 	let copyText = document.querySelector("#ascii-text");
   copyText.select();
   document.execCommand("copy");
