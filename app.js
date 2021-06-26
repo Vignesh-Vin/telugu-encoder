@@ -33,6 +33,7 @@ function encodeToAscii() {
 		
 		// consonants
 		let totalLetter = ""
+	if (uniText.charCodeAt(i) >= 3093 && uniText.charCodeAt(i) <= 3129) {
 	for (x = 3093; x <= 3129; x++) {
 		if (!!consonants[x] && uniText.charCodeAt(i) === x) {
 			if ( uniText.charCodeAt(i + 1) == 3149) {
@@ -43,14 +44,25 @@ function encodeToAscii() {
 					for (y = 3134; y <= 3150; y++) {
 						if (uniText.charCodeAt(i + 3) === y){
 							totalLetter = consonants[x].symbols[y] + extensions[extensionNumber]// find the symbol (if it exists) and assign it				
+							if (extensionNumber === 3120) {
+								totalLetter = extensions[extensionNumber] + consonants[x].symbols[y] // special case for "RA" extension
+								//if (uniText.charCodeAt(i + 4 === 0x20)) {totalLetter += String.fromCharCode(0x20);}
+								//i += 4
+							}
 							i = i + 3
 						}
 					}
 				} else if ( !uniText.charCodeAt(i + 2) || uniText.charCodeAt(i + 2) < 3093 || uniText.charCodeAt(i + 2) > 3129 ) {
 					totalLetter = consonants[x].symbols[3149]
+					if (extensionNumber === 3120) {
+						totalLetter = extensions[extensionNumber] + consonants[x].base
+					}
 				}
 				else {
 					totalLetter = consonants[x].base + extensions[extensionNumber] // if no symbol is found just add "a" (the default one)
+					if (extensionNumber === 3120) {
+						totalLetter = extensions[extensionNumber] + consonants[x].base
+					}
 					i = i + 2
 					// console.log("no symbol found" + "     " + totalLetter) // something is wrong here
 				}
@@ -71,7 +83,7 @@ function encodeToAscii() {
 			}
 		}
 	}
-	
+	}
 		document.querySelector("#ascii-text").value += totalLetter
 		
 		// Hmmmmm
